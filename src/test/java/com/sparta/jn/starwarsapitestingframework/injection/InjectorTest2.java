@@ -17,11 +17,10 @@ public class InjectorTest2 {
 //        mockSpartan = Mockito.mock(Spartan.class);
 //        spartan = new Spartan(1,"Manish", "Java,", LocalDate.now());
 //        spySpartan = Mockito.spy(spartan); //partial Moc
-        
+
         mockPeopleDTO = Mockito.mock(PeopleDTO.class);
 
-
-        dto = Injector.injectActivityDTO(ConnectionManager.getConnection("people","1"));
+        dto = Injector.injectPeopleDTO(ConnectionManager.getConnection("people","1"));
         statusCode = ConnectionManager.getStatusCode();
 
     }
@@ -30,6 +29,6 @@ public class InjectorTest2 {
     @DisplayName("Check if it returns a dto")
     void checkIfItReturnsADto() {
 //        Assertions.assertTrue(dto.getClass() == true}
-        System.out.println(dto.getName());
+        System.out.println(dto.getClass());
     }
 }

@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class Injector {
     private static final ObjectMapper mapper = new ObjectMapper();
-    public static PeopleDTO injectActivityDTO(String path) {
+    public static PeopleDTO injectPeopleDTO(String path) {
         PeopleDTO dto = new PeopleDTO();
 
         try {
