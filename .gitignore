@@ -1,12 +1,8 @@
 # Compiled class file
 *.class
 
-
-
 # Log file
 *.log
-
-
 
 # Package Files #
 *.jar
@@ -17,18 +13,12 @@
 *.tar.gz
 *.rar
 
-
-
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
-
-
 
 # Vim
 *.swp
 *.md~
-
-
 
 # Maven Files
 target/
@@ -43,8 +33,6 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
-
-
 # Gradle
 .gradle/
 /build/
@@ -52,8 +40,6 @@ buildNumber.properties
 gradle-app.setting
 !gradle-wrapper.jar
 .gradletasknamecache
-
-
 
 # Intellij
 out/
