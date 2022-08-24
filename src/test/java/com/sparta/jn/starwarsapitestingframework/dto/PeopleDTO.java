@@ -191,5 +191,4 @@ public class PeopleDTO {
         LocalDateTime editedDate = LocalDateTime.parse(sdf.format(edited));
         return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
     }
-
 }
