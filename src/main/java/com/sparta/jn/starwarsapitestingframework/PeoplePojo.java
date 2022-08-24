@@ -1,10 +1,10 @@
-package com.sparta.jn.starwarsapitestingframework.dto;
+package com.sparta.jn.starwarsapitestingframework;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
 
-public class PeopleDTO {
+public class PeoplePojo {
     @JsonProperty("films")
     private List<String> films;
     @JsonProperty("homeworld")
@@ -30,7 +30,7 @@ public class PeopleDTO {
     @JsonProperty("eye_color")
     private String eyeColor;
     @JsonProperty("species")
-    private List<Object> species;
+    private List<String> species;
     @JsonProperty("starships")
     private List<String> starships;
     @JsonProperty("name")
@@ -73,7 +73,7 @@ public class PeopleDTO {
     public String getEyeColor(){
         return eyeColor;
     }
-    public List<Object> getSpecies(){
+    public List<String> getSpecies(){
         return species;
     }
     public List<String> getStarships(){
@@ -85,7 +85,6 @@ public class PeopleDTO {
     public String getHeight(){
         return height;
     }
-
     @Override
     public String toString(){
         return
@@ -107,11 +106,5 @@ public class PeopleDTO {
                         ",name = '" + name + '\'' +
                         ",height = '" + height + '\'' +
                         "}";
-    }
-    public boolean hasMassAboveZero() {
-        return Integer.parseInt(mass) > 0;
-    }
-    public boolean hasHeightAboveZero() {
-        return Integer.parseInt(height) > 0;
     }
 }

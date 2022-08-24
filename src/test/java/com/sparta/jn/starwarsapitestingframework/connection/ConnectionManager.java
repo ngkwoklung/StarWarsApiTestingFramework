@@ -14,11 +14,11 @@ public class ConnectionManager {
     }
 
     public static String getConnection(String resource, String endpoint) {
-        return BASEURL + "?" + resource + "/" + endpoint;
+        return BASEURL + resource + "/" + endpoint;
     }
 
     public static String getConnection(String resource, int endpoint) {
-        return BASEURL + "?" + resource + "/" + endpoint;
+        return BASEURL + resource + "/" + endpoint;
     }
 
     private static HttpResponse<String> getResponse() {
