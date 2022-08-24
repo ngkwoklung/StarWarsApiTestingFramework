@@ -2,6 +2,10 @@ package com.sparta.jn.starwarsapitestingframework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class PeopleDTO {
@@ -30,7 +34,7 @@ public class PeopleDTO {
     @JsonProperty("eye_color")
     private String eyeColor;
     @JsonProperty("species")
-    private List<Object> species;
+    private List<String> species;
     @JsonProperty("starships")
     private List<String> starships;
     @JsonProperty("name")
@@ -73,7 +77,7 @@ public class PeopleDTO {
     public String getEyeColor(){
         return eyeColor;
     }
-    public List<Object> getSpecies(){
+    public List<String> getSpecies(){
         return species;
     }
     public List<String> getStarships(){
@@ -111,7 +115,81 @@ public class PeopleDTO {
     public boolean hasMassAboveZero() {
         return Integer.parseInt(mass) > 0;
     }
-    public boolean hasHeightAboveZero() {
-        return Integer.parseInt(height) > 0;
+
+
+    public boolean hasGender() {
+        return (gender.equals("Male") || gender.equals("Female") || gender.equals("unknown") || gender.equals("n/a"));
     }
+
+    public boolean hasAttributeNotEmpty(String attribute) {
+        return !attribute.isEmpty();
+    }
+
+    public boolean hasAttributeNotBlank(String attribute) {
+        return !attribute.isBlank();
+    }
+
+    public boolean hasAttributeNotNull(String attribute) {
+        return attribute != null;
+    }
+
+    public boolean hasBirthYearFormat() {
+        return (birthYear.matches("[0-9]+BBY") || birthYear.matches("[0-9]+ABY") || birthYear.equals("unknown"));
+    }
+
+    public boolean hasMeasurementAboveZero(String measurement) {
+        return Integer.parseInt(measurement) > 0;
+    }
+
+    public boolean hasMeasurementContainingNumbers(String measurement) {
+        return measurement.matches("[0-9]+");
+    }
+
+    public boolean isURLStatusCode200(String url){
+        return true;
+    }
+
+    public boolean hasLoopWithURLStatusCode200() {
+        for(String url : films){
+            if(!isURLStatusCode200(url)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean hasFilmEntry() {
+        return !films.isEmpty();
+    }
+
+    public boolean hasArrayNotNull(List<String> list) {
+        return list.contains(null);
+    }
+
+    public boolean hasCorrectURL(String category, String url){
+        return url.matches("https://swapi.dev/api/" + category + "/[0-9]+");
+    }
+
+    public boolean hasArrayGotCorrectURL(String category, List<String> array){
+        for(String url : array) {
+            if(!hasCorrectURL(category, url)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean hasPastDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        LocalDateTime localDateTime = LocalDateTime.parse(sdf.format(created));
+        return localDateTime.isBefore(LocalDateTime.now());
+    }
+
+    public boolean hasLogicalEditedDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
+        LocalDateTime createdDate = LocalDateTime.parse(sdf.format(created));
+        LocalDateTime editedDate = LocalDateTime.parse(sdf.format(edited));
+        return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
+    }
+
 }

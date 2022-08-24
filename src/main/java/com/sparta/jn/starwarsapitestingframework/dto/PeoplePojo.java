@@ -30,7 +30,7 @@ public class PeoplePojo {
     @JsonProperty("eye_color")
     private String eyeColor;
     @JsonProperty("species")
-    private List<Object> species;
+    private List<String> species;
     @JsonProperty("starships")
     private List<String> starships;
     @JsonProperty("name")
@@ -73,7 +73,7 @@ public class PeoplePojo {
     public String getEyeColor(){
         return eyeColor;
     }
-    public List<Object> getSpecies(){
+    public List<String> getSpecies(){
         return species;
     }
     public List<String> getStarships(){

@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="164f6e97-21aa-4bfb-bb79-dbb6720732c3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/sparta/jn/starwarsapitestingframework/dto/PeoplePojo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/sparta/jn/starwarsapitestingframework/dto/PeopleDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/sparta/jn/starwarsapitestingframework/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/sparta/jn/starwarsapitestingframework/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/sparta/jn/starwarsapitestingframework/dto/PeoplePojo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/sparta/jn/starwarsapitestingframework/dto/PeoplePojo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/sparta/jn/starwarsapitestingframework/dto/PeopleDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/sparta/jn/starwarsapitestingframework/dto/PeopleDTO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +38,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "C:/Users/kei_v/Documents/StarWars/StarWarsApiTestingFramework"
   }
 }]]></component>
