@@ -2,15 +2,12 @@ package com.sparta.jn.starwarsapitestingframework.injection;
 
 import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
 import com.sparta.jn.starwarsapitestingframework.dto.PeopleDTO;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.time.LocalDate;
-
-public class InjectorTest {
+public class InjectorTest2 {
     private static PeopleDTO dto;
     private static int statusCode;
     private static PeopleDTO mockPeopleDTO;
@@ -20,6 +17,7 @@ public class InjectorTest {
 //        mockSpartan = Mockito.mock(Spartan.class);
 //        spartan = new Spartan(1,"Manish", "Java,", LocalDate.now());
 //        spySpartan = Mockito.spy(spartan); //partial Moc
+        
         mockPeopleDTO = Mockito.mock(PeopleDTO.class);
 
 
