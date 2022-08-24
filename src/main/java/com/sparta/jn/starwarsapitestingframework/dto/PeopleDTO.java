@@ -114,5 +114,4 @@ public class PeopleDTO {
     public boolean hasHeightAboveZero() {
         return Integer.parseInt(height) > 0;
     }
-
 }
