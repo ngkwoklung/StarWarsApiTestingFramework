@@ -118,7 +118,7 @@ public class PeopleDTO {
 
 
     public boolean hasGender() {
-        return (gender.equals("Male") || gender.equals("Female") || gender.equals("unknown") || gender.equals("n/a"));
+        return (getGender().equals("Male") || getGender().equals("Female") || getGender().equals("unknown") || getGender().equals("n/a"));
     }
 
     public boolean hasAttributeNotEmpty(String attribute) {
@@ -134,7 +134,7 @@ public class PeopleDTO {
     }
 
     public boolean hasBirthYearFormat() {
-        return (birthYear.matches("[0-9]+BBY") || birthYear.matches("[0-9]+ABY") || birthYear.equals("unknown"));
+        return (getBirthYear().matches("[0-9]+BBY") || getBirthYear().matches("[0-9]+ABY") || getBirthYear().equals("unknown"));
     }
 
     public boolean hasMeasurementAboveZero(String measurement) {
