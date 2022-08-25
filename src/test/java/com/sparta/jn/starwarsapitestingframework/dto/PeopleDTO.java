@@ -2,8 +2,8 @@ package com.sparta.jn.starwarsapitestingframework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
-
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -120,7 +120,6 @@ public class PeopleDTO {
 
     }
 
-
     public boolean hasGender() {
         return (getGender().equals("Male") || getGender().equals("Female") || getGender().equals("unknown") || getGender().equals("n/a"));
     }
@@ -199,6 +198,7 @@ public class PeopleDTO {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
         LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
         return createdDate.isBefore(LocalDateTime.now());
+
     }
         public boolean hasLogicalEditedDate() {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
@@ -220,6 +220,4 @@ public class PeopleDTO {
     public boolean isListNotNull(List<String> list){
         return list != null;
     }
-
-
 }
