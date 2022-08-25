@@ -1,27 +1,20 @@
 package com.sparta.jn.starwarsapitestingframework;
-
-import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
 import com.sparta.jn.starwarsapitestingframework.dto.PeopleDTO;
 import com.sparta.jn.starwarsapitestingframework.injection.Injector;
 import org.junit.jupiter.api.*;
 import java.util.Random;
 
 public class SWAPIFrameworkTests {
-
         private static PeopleDTO peopleDTO;
-
         static int getRandomNumber(){
             Random random = new Random();
-
             return random.nextInt(83)+1;
-
         }
 
         @BeforeAll
         static void initAll() {
             peopleDTO = Injector.injectPeopleDTO("people",getRandomNumber());
         }
-
 
         @BeforeEach
         void init(TestInfo testInfo) {

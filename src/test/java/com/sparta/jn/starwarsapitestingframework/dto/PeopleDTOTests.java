@@ -4,20 +4,14 @@ import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.io.IOException;
-import java.net.ConnectException;
-import java.net.SocketException;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class PeopleDTOTests {
     private PeopleDTO mockPeopleDTO;
-    private ConnectionManager mockConnectionManager;
-
 
     @BeforeEach
     void init() {
@@ -245,15 +239,15 @@ public class PeopleDTOTests {
     @Test
     @DisplayName("given a URL with the correct format return true")
     void givenAUrlWithTheCorrectFormatReturnTrue() {
-        Mockito.when(mockPeopleDTO.hasCorrectURL("people", "https://swapi.dev/api/people/5")).thenCallRealMethod();
-        Assertions.assertTrue(mockPeopleDTO.hasCorrectURL("people", "https://swapi.dev/api/people/5"));
+        Mockito.when(mockPeopleDTO.hasCorrectURL("people", "https://swapi.dev/api/people/5/")).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.hasCorrectURL("people", "https://swapi.dev/api/people/5/"));
 
     }
 
     @Test
     @DisplayName("given an array of URLs that have an incorrect format return false")
     void givenAnArrayOfUrLsThatHaveAnIncorrectFormatReturnFalse() {
-        List<String> array = Arrays.asList("https://swapi.com/api/people/10", "https://swapi.com/api/people/AZ", "https://swapl.com/api/people/15");
+        List<String> array = Arrays.asList("https://swapi.com/api/people/10/", "https://swapi.com/api/people/AZ/", "https://swapl.com/api/people/15/");
         Mockito.when(mockPeopleDTO.hasArrayGotCorrectURL("people", array)).thenCallRealMethod();
         Assertions.assertFalse(mockPeopleDTO.hasArrayGotCorrectURL("people", array));
     }
@@ -261,7 +255,7 @@ public class PeopleDTOTests {
     @Test
     @DisplayName("given an array of URLs that have the correct format return true")
     void givenAnArrayOfUrLsThatHaveTheCorrectFormatReturnTrue() {
-        List<String> array = Arrays.asList("https://swapi.dev/api/people/15", "https://swapi.dev/api/people/12", "https://swapi.dev/api/people/11");
+        List<String> array = Arrays.asList("https://swapi.dev/api/people/15/", "https://swapi.dev/api/people/12/", "https://swapi.dev/api/people/11/");
         Mockito.when(mockPeopleDTO.hasCorrectURL(Mockito.anyString(), Mockito.anyString())).thenCallRealMethod();
         Mockito.when(mockPeopleDTO.hasArrayGotCorrectURL("people", array)).thenCallRealMethod();
         Assertions.assertTrue(mockPeopleDTO.hasArrayGotCorrectURL("people", array));
@@ -288,15 +282,6 @@ public class PeopleDTOTests {
 
     }
 
-    @Test
-    @DisplayName("Testing DTO method hasarraygotcorrecturl")
-    void testingDtoMethodHasarraygotcorrecturl() {
-        PeopleDTO peopleDTO = new PeopleDTO();
-        List<String> array = Arrays.asList("https://swapi.dev/api/people/15", "https://swapi.dev/api/people/12", "https://swapi.dev/api/people/11");
-        boolean result = peopleDTO.hasArrayGotCorrectURL("people", array);
-
-        Assertions.assertTrue(result);
-    }
 
     @Test
     @DisplayName("check that edited date is after created date then return true")

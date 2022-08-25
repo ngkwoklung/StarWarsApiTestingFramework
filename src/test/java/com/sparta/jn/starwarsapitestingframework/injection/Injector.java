@@ -3,9 +3,8 @@ package com.sparta.jn.starwarsapitestingframework.injection;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
 import com.sparta.jn.starwarsapitestingframework.dto.PeopleDTO;
-
 import java.io.IOException;
-import java.net.URL;
+
 
 public class Injector {
     private static final ObjectMapper mapper = new ObjectMapper();

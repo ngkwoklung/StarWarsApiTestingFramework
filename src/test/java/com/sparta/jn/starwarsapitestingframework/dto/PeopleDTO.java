@@ -2,9 +2,6 @@ package com.sparta.jn.starwarsapitestingframework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -116,7 +113,7 @@ public class PeopleDTO {
     public boolean hasMassAboveZero() {
 
 
-     return Double.parseDouble(mass) > 0;
+     return Double.parseDouble(getMass()) > 0;
 
     }
 
@@ -172,7 +169,7 @@ public class PeopleDTO {
     }
 
     public boolean hasFilmEntry(){
-        return !films.isEmpty();
+        return !getFilms().isEmpty();
     }
 
     public boolean hasArrayContainsNoNullValues(List<String> list) { //returns true if contains null?
