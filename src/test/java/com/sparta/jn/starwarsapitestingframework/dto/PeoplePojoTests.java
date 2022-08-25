@@ -453,7 +453,7 @@ public class PeoplePojoTests {
             class DatesTests {
 
                 LocalDateTime dateConverter(String dateString) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXX)");
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.nnnnnnn'Z')");
                     return LocalDateTime.parse(sdf.format(dateString));
                 }
 
