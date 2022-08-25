@@ -113,7 +113,7 @@ public class PeopleDTO {
                         "}";
     }
     public boolean hasMassAboveZero() {
-        return Integer.parseInt(mass) > 0;
+        return Integer.parseInt(getMass()) > 0;
     }
 
 
