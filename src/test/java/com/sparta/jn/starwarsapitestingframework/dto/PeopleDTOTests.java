@@ -248,10 +248,31 @@ public class PeopleDTOTests {
     @Test
     @DisplayName("given an array of URLs that have the correct format return true")
     void givenAnArrayOfUrLsThatHaveTheCorrectFormatReturnTrue() {
-        List<String> array = Arrays.asList("https://swapi.dev/api/people/10", "https://swapi.dev/api/people/10", "https://swapi.dev/api/people/10");
+        List<String> array = Arrays.asList("https://swapi.dev/api/people/15", "https://swapi.dev/api/people/12", "https://swapi.dev/api/people/11");
+        Mockito.when(mockPeopleDTO.hasCorrectURL(Mockito.anyString(), Mockito.anyString())).thenCallRealMethod();
         Mockito.when(mockPeopleDTO.hasArrayGotCorrectURL("people", array)).thenCallRealMethod();
         Assertions.assertTrue(mockPeopleDTO.hasArrayGotCorrectURL("people", array));
 
+    }
+
+    @Test
+    @DisplayName("check that date given is in the past")
+    void checkThatDateGivenIsInThePast() {
+        Mockito.when(mockPeopleDTO.getCreated()).thenReturn("2014-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.hasPastDate()).thenCallRealMethod();
+
+        Assertions.assertTrue(mockPeopleDTO.hasPastDate());
+        
+    }
+
+    @Test
+    @DisplayName("Testing DTO method hasarraygotcorrecturl")
+    void testingDtoMethodHasarraygotcorrecturl() {
+        PeopleDTO peopleDTO = new PeopleDTO();
+        List<String> array = Arrays.asList("https://swapi.dev/api/people/15", "https://swapi.dev/api/people/12", "https://swapi.dev/api/people/11");
+        boolean result = peopleDTO.hasArrayGotCorrectURL("people", array);
+
+        Assertions.assertTrue(result);
     }
 
 }

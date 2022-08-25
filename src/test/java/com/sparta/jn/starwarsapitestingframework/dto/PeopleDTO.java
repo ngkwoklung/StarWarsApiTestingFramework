@@ -175,24 +175,25 @@ public class PeopleDTO {
     }
 
     public boolean hasArrayGotCorrectURL(String category, List<String> array){
+        boolean correctUrl = true;
         for(String url : array) {
             if(!hasCorrectURL(category, url)) {
-                return false;
+                correctUrl = false;
             }
         }
-        return true;
+        return correctUrl;
     }
 
     public boolean hasPastDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-        LocalDateTime localDateTime = LocalDateTime.parse(sdf.format(created));
+        LocalDateTime localDateTime = LocalDateTime.parse(sdf.format(getCreated()));
         return localDateTime.isBefore(LocalDateTime.now());
     }
 
     public boolean hasLogicalEditedDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-        LocalDateTime createdDate = LocalDateTime.parse(sdf.format(created));
-        LocalDateTime editedDate = LocalDateTime.parse(sdf.format(edited));
+        LocalDateTime createdDate = LocalDateTime.parse(sdf.format(getCreated()));
+        LocalDateTime editedDate = LocalDateTime.parse(sdf.format(getEdited()));
         return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
     }
 }
