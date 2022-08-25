@@ -16,10 +16,11 @@ public class SWAPIFrameworkTests {
             return random.nextInt(83)+1;
 
         }
-
         @BeforeAll
         static void initAll() {
             peopleDTO = Injector.injectPeopleDTO("people",getRandomNumber());
+//            peopleDTO = Injector.injectPeopleDTO("https://swapi.dev/api/people/1/");
+
         }
 
 
@@ -134,7 +135,6 @@ public class SWAPIFrameworkTests {
                 @Test
                 @DisplayName("Check skin color only contains letters or /")
                 void checkSkinColorOnlyContainsLettersOr() {
-                    System.out.println(peopleDTO.getSkinColor());
                     Assertions.assertTrue(peopleDTO.hasOnlyLetters(peopleDTO.getSkinColor()));
                 }
 
