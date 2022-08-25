@@ -13,7 +13,7 @@ public class Injector {
     private static HttpResponse<String> httpResponse;
     public static PeopleDTO injectPeopleDTO(String resource, String id) {
         PeopleDTO dto = new PeopleDTO();
-//        httpResponse = ConnectionManager.getResponse(resource, id);
+        httpResponse = ConnectionManager.getResponse(resource, id);
         try {
             dto = mapper.readValue(httpResponse.body(), PeopleDTO.class);
         } catch (IOException e) {
