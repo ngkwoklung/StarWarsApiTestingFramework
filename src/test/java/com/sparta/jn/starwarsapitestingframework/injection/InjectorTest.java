@@ -25,8 +25,8 @@ public class InjectorTest {
 //        spartan = new Spartan(1,"Manish", "Java,", LocalDate.now());
 //        spySpartan = Mockito.spy(spartan); //partial Moc
 //        mockPeopleDTO = Mockito.mock(PeopleDTO.class);
-//        dto = Injector.injectPeopleDTO(ConnectionManager.getConnection("people","1"));
-//        statusCode = ConnectionManager.getStatusCode();
+        dto = Injector.injectPeopleDTO(ConnectionManager.getConnection("people","1"));
+        statusCode = ConnectionManager.getStatusCode();
 
     }
 

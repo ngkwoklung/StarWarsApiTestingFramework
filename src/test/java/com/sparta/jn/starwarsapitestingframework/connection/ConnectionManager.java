@@ -24,12 +24,12 @@ public class ConnectionManager {
         return BASEURL;
     }
 
-    public static String getConnection(String resource, String endpoint) {
-        return BASEURL + resource + "/" + endpoint;
+    public static String getConnection(String resource, String id) {
+        return String.valueOf(getResponse(resource, id).uri());
     }
 
-    public static String getConnection(String resource, int endpoint) {
-        return BASEURL + resource + "/" + endpoint;
+    public static String getConnection(String resource, int id) {
+        return BASEURL + resource + "/" + id;
     }
 
     private static HttpResponse<String> getResponse() {
@@ -48,7 +48,23 @@ public class ConnectionManager {
         }
         logger.log(Level.FINE, "Response is: " + response.body());
         return response;
+    }
+    private static HttpResponse<String> getResponse(String resource, String id) {
+        var client = HttpClient.newHttpClient();
+        var request = HttpRequest
+                .newBuilder()
+                .uri(URI.create(BASEURL + resource + "/" + id))
+                .build();
 
+        HttpResponse<String> response =null;
+
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        logger.log(Level.FINE, "Response is: " + response.body());
+        return response;
     }
 
     public static int getStatusCode() {
@@ -60,5 +76,9 @@ public class ConnectionManager {
                 .headers()
                 .firstValue(key)
                 .orElse("Key not found");
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getConnection("people", "1"));
     }
 }

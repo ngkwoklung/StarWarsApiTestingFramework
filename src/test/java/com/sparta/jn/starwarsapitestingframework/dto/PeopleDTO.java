@@ -162,7 +162,7 @@ public class PeopleDTO {
         return !films.isEmpty();
     }
 
-    public boolean hasArrayNotNull(List<String> list) {
+    public boolean hasArrayNotNull(List<String> list) { //returns true if contains null?
         return list.contains(null);
     }
 
