@@ -6,30 +6,35 @@ import com.sparta.jn.starwarsapitestingframework.dto.PeopleDTO;
 
 import java.io.IOException;
 import java.net.URL;
-import java.net.http.HttpResponse;
 
 public class Injector {
     private static final ObjectMapper mapper = new ObjectMapper();
-    private static HttpResponse<String> httpResponse;
-    public static PeopleDTO injectPeopleDTO(String resource, String id) {
+    public static PeopleDTO injectPeopleDTO(String path) {
         PeopleDTO dto = new PeopleDTO();
-        httpResponse = ConnectionManager.getResponse(resource, id);
         try {
-            dto = mapper.readValue(httpResponse.body(), PeopleDTO.class);
+            dto = mapper.readValue(ConnectionManager.getResponseBody(path), PeopleDTO.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return dto;
     }
-    public static PeopleDTO injectPeopleDTO(String resource) {
+    public static PeopleDTO injectPeopleDTO(String resource, String id) {
         PeopleDTO dto = new PeopleDTO();
-        httpResponse = ConnectionManager.getResponse(resource);
         try {
-            dto = mapper.readValue(httpResponse.body(), PeopleDTO.class);
+            dto = mapper.readValue(ConnectionManager.getResponseBody(resource, id), PeopleDTO.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return dto;
     }
 
+    public static PeopleDTO injectPeopleDTO(String resource, int id) {
+        PeopleDTO dto = new PeopleDTO();
+        try {
+            dto = mapper.readValue(ConnectionManager.getResponseBody(resource, id), PeopleDTO.class);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
 }
