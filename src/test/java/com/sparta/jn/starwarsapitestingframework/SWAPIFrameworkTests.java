@@ -4,27 +4,22 @@ import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
 import com.sparta.jn.starwarsapitestingframework.dto.PeopleDTO;
 import com.sparta.jn.starwarsapitestingframework.injection.Injector;
 import org.junit.jupiter.api.*;
-import java.net.http.HttpResponse;
 import java.util.Random;
 
 public class SWAPIFrameworkTests {
 
-
-        private static final String URL = "https://swapi.dev/api/people/1/";
         private static PeopleDTO peopleDTO;
-        private static HttpResponse<String> httpResponse;
 
         static int getRandomNumber(){
             Random random = new Random();
-            int rando = random.nextInt(83);
 
-            return rando;
+            return random.nextInt(83)+1;
 
         }
 
         @BeforeAll
         static void initAll() {
-            peopleDTO = Injector.injectPeopleDTO(ConnectionManager.getResponseBody("people",getRandomNumber()));
+            peopleDTO = Injector.injectPeopleDTO("people",getRandomNumber());
         }
 
 
@@ -139,6 +134,7 @@ public class SWAPIFrameworkTests {
                 @Test
                 @DisplayName("Check skin color only contains letters or /")
                 void checkSkinColorOnlyContainsLettersOr() {
+                    System.out.println(peopleDTO.getSkinColor());
                     Assertions.assertTrue(peopleDTO.hasOnlyLetters(peopleDTO.getSkinColor()));
                 }
 
@@ -350,7 +346,7 @@ public class SWAPIFrameworkTests {
 
                     }
                 }
-                @Disabled
+
                 @Nested
                 @Tag("datesCheck")
                 class DatesTests {
@@ -378,11 +374,11 @@ public class SWAPIFrameworkTests {
                             Assertions.assertTrue(peopleDTO.hasAttributeNotEmpty(peopleDTO.getCreated()));
                         }
 
-//                        @Test
-//                        @DisplayName("Check creation date is not in the future")
-//                        void checkCreationDateIsNotInTheFuture() {
-//                            Assertions.assertTrue(peopleDTO.hasPastDate(peopleDTO.getCreated()));
-//                        }
+                        @Test
+                        @DisplayName("Check creation date is not in the future")
+                        void checkCreationDateIsNotInTheFuture() {
+                            Assertions.assertTrue(peopleDTO.hasPastDate(peopleDTO.getCreated()));
+                        }
                     }
 
                     @Nested
@@ -407,11 +403,11 @@ public class SWAPIFrameworkTests {
                             Assertions.assertTrue(peopleDTO.hasAttributeNotEmpty(peopleDTO.getEdited()));
                         }
 
-//                        @Test
-//                        @DisplayName("Check edited date is not in the future")
-//                        void checkEditedDateIsNotInTheFuture() {
-//                            Assertions.assertTrue(peopleDTO.hasPastDate(peopleDTO.getEdited()));
-//                        }
+                        @Test
+                        @DisplayName("Check edited date is not in the future")
+                        void checkEditedDateIsNotInTheFuture() {
+                            Assertions.assertTrue(peopleDTO.hasPastDate(peopleDTO.getEdited()));
+                        }
 
                         @Test
                         @DisplayName("Check edited date is not before created date")
