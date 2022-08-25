@@ -135,7 +135,9 @@ public class PeopleDTO {
     }
 
     public boolean hasBirthYearFormat() {
-        return getBirthYear().matches("[0-9]+BBY") || getBirthYear().matches("[0-9]+ABY") || getBirthYear().matches("unknown");
+
+        return (getBirthYear().matches("[0-9]+BBY") || getBirthYear().matches("[0-9]+ABY") || getBirthYear().equals("unknown"));
+
     }
 
     public boolean hasMeasurementAboveZero(String measurement) {

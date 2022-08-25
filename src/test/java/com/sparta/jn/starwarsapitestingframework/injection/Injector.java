@@ -12,7 +12,7 @@ public class Injector {
         PeopleDTO dto = new PeopleDTO();
 
         try {
-            dto = mapper.readValue(new URL(path), PeopleDTO.class);
+            dto = mapper.readValue(path, PeopleDTO.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
