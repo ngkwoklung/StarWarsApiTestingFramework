@@ -31,6 +31,6 @@ public class InjectorTest {
     @DisplayName("Check if it returns a populated dto")
     void checkIfItReturnsAPopulatedDto() {
 //        Assertions.assertTrue(dto.getClass() == true}
-        System.out.println(dto.getName());
+        System.out.println((dto.getName()));
     }
 }

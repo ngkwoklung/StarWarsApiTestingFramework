@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.net.ConnectException;
+import java.util.Arrays;
 import java.util.List;
 
 public class PeopleDTOTests {
@@ -182,15 +183,75 @@ public class PeopleDTOTests {
 
     }
 
-    @ParameterizedTest(name = "{displayName} of {argumentsWithNames}")
-    @ValueSource(strings = {"Film 1", "Film 2", "Film 3", "Film 4", "Film 5", "Film 6"})
+    @Test
     @DisplayName("check that if a film value is empty return false")
-    void checkThatIfAFilmValueIsEmptyReturnFalse(List<String> films) {
+    void checkThatIfAFilmValueIsEmptyReturnFalse() {
+        List<String> films = Arrays.asList();
+
+        Mockito.when(mockPeopleDTO.getFilms()).thenReturn(films);
+        Mockito.when(mockPeopleDTO.hasFilmEntry()).thenCallRealMethod();
+        Assertions.assertFalse(mockPeopleDTO.hasFilmEntry());
+    }
+
+    @Test
+    @DisplayName("check that if a film has a value return true")
+    void checkThatIfAFilmHasAValueReturnTrue() {
+        List<String> films = Arrays.asList("Film 1", "Film 2", "Film 3");
+
         Mockito.when(mockPeopleDTO.getFilms()).thenReturn(films);
         Mockito.when(mockPeopleDTO.hasFilmEntry()).thenCallRealMethod();
         Assertions.assertTrue(mockPeopleDTO.hasFilmEntry());
 
     }
 
+    @Test
+    @DisplayName("check that an array that has null values returns false")
+    void checkThatAnArrayDoesnTHaveNullValues() {
+        List<String> array = Arrays.asList(null, "film 2");
+        Mockito.when(mockPeopleDTO.hasArrayContainsNoNullValues(array)).thenCallRealMethod();
+        Assertions.assertFalse(mockPeopleDTO.hasArrayContainsNoNullValues(array));
+    }
+
+    @Test
+    @DisplayName("check that an array that without null values returns true")
+    void checkThatAnArrayThatWithoutNullValuesReturnsTrue() {
+        List<String> array = Arrays.asList("film 1", "film 2");
+        Mockito.when(mockPeopleDTO.hasArrayContainsNoNullValues(array)).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.hasArrayContainsNoNullValues(array));
+
+    }
+
+    @Test
+    @DisplayName("given a URL with an incorrect format return false")
+    void givenAUrlWithAnIncorrectFormatReturnFalse() {
+        Mockito.when(mockPeopleDTO.hasCorrectURL("people", "https://swapi.com/api/people/10")).thenCallRealMethod();
+        Assertions.assertFalse(mockPeopleDTO.hasCorrectURL("people", "https://swapi.com/api/people/10"));
+
+    }
+
+    @Test
+    @DisplayName("given a URL with the correct format return true")
+    void givenAUrlWithTheCorrectFormatReturnTrue() {
+        Mockito.when(mockPeopleDTO.hasCorrectURL("people", "https://swapi.dev/api/people/5")).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.hasCorrectURL("people", "https://swapi.dev/api/people/5"));
+
+    }
+
+    @Test
+    @DisplayName("given an array of URLs that have an incorrect format return false")
+    void givenAnArrayOfUrLsThatHaveAnIncorrectFormatReturnFalse() {
+        List<String> array = Arrays.asList("https://swapi.com/api/people/10", "https://swapi.com/api/people/AZ", "https://swapl.com/api/people/15");
+        Mockito.when(mockPeopleDTO.hasArrayGotCorrectURL("people", array)).thenCallRealMethod();
+        Assertions.assertFalse(mockPeopleDTO.hasArrayGotCorrectURL("people", array));
+    }
+
+    @Test
+    @DisplayName("given an array of URLs that have the correct format return true")
+    void givenAnArrayOfUrLsThatHaveTheCorrectFormatReturnTrue() {
+        List<String> array = Arrays.asList("https://swapi.dev/api/people/10", "https://swapi.dev/api/people/10", "https://swapi.dev/api/people/10");
+        Mockito.when(mockPeopleDTO.hasArrayGotCorrectURL("people", array)).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.hasArrayGotCorrectURL("people", array));
+
+    }
 
 }
