@@ -1,6 +1,7 @@
 package com.sparta.jn.starwarsapitestingframework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -113,12 +114,15 @@ public class PeopleDTO {
                         "}";
     }
     public boolean hasMassAboveZero() {
-        return Integer.parseInt(getMass()) > 0;
+
+
+     return Double.parseDouble(mass) > 0;
+
     }
 
 
     public boolean hasGender() {
-        return (gender.equals("Male") || gender.equals("Female") || gender.equals("unknown") || gender.equals("n/a"));
+        return (getGender().equals("Male") || getGender().equals("Female") || getGender().equals("unknown") || getGender().equals("n/a"));
     }
 
     public boolean hasAttributeNotEmpty(String attribute) {
@@ -134,19 +138,25 @@ public class PeopleDTO {
     }
 
     public boolean hasBirthYearFormat() {
-        return (birthYear.matches("[0-9]+BBY") || birthYear.matches("[0-9]+ABY") || birthYear.equals("unknown"));
+
+        return (getBirthYear().matches("[0-9]+BBY") || getBirthYear().matches("[0-9]+ABY") || getBirthYear().equals("unknown"));
+
     }
 
     public boolean hasMeasurementAboveZero(String measurement) {
-        return Integer.parseInt(measurement) > 0;
+        return Double.parseDouble(measurement) > 0;
     }
 
     public boolean hasMeasurementContainingNumbers(String measurement) {
-        return measurement.matches("[0-9]+");
+        return measurement.matches("[0-9.]+");
     }
 
     public boolean isURLStatusCode200(String url){
-        return true;
+
+        ConnectionManager.getConnectionURL(url);
+        int statusCode = ConnectionManager.getStatusCode();
+        return statusCode == 200;
+
     }
 
     public boolean hasLoopWithURLStatusCode200() {
@@ -159,15 +169,15 @@ public class PeopleDTO {
     }
 
     public boolean hasFilmEntry() {
-        return !films.isEmpty();
+        return !getFilms().isEmpty();
     }
 
-    public boolean hasArrayNotNull(List<String> list) { //returns true if contains null?
-        return list.contains(null);
+    public boolean hasArrayContainsNoNullValues(List<String> list) { //returns true if contains null?
+        return !list.contains(null);
     }
 
     public boolean hasCorrectURL(String category, String url){
-        return url.matches("https://swapi.dev/api/" + category + "/[0-9]+");
+        return url.matches("https://swapi.dev/api/" + category + "/[0-9]+/");
     }
 
     public boolean hasArrayGotCorrectURL(String category, List<String> array){

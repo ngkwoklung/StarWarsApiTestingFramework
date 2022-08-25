@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 public class ConnectionManager {
     private static final Logger logger = Logger.getLogger("my logger");
     private static final ConsoleHandler consoleHandler = new ConsoleHandler();
-    private static final String BASEURL = "https://swapi.dev/api/";
+    private static  String BASEURL = "https://swapi.dev/api/";
     {
         logger.setLevel(Level.FINE);
         logger.setUseParentHandlers(false);
@@ -31,6 +31,10 @@ public class ConnectionManager {
     public static String getConnectionURL(String resource, int id) {
         return BASEURL + resource + "/" + id + "?format=json";
     }
+    public static String getConnectionURL(String url) {
+        return BASEURL = url;
+    }
+
 
     private static HttpResponse<String> getResponse() {
         var client = HttpClient.newHttpClient();
