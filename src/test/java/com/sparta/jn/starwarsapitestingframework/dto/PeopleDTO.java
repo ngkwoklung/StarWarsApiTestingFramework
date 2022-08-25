@@ -1,6 +1,7 @@
 package com.sparta.jn.starwarsapitestingframework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -113,7 +114,7 @@ public class PeopleDTO {
                         "}";
     }
     public boolean hasMassAboveZero() {
-        return Integer.parseInt(mass) > 0;
+        return Double.parseDouble(mass) > 0;
     }
 
 
@@ -138,15 +139,17 @@ public class PeopleDTO {
     }
 
     public boolean hasMeasurementAboveZero(String measurement) {
-        return Integer.parseInt(measurement) > 0;
+        return Double.parseDouble(measurement) > 0;
     }
 
     public boolean hasMeasurementContainingNumbers(String measurement) {
-        return measurement.matches("[0-9]+");
+        return measurement.matches("[0-9.]+");
     }
 
     public boolean isURLStatusCode200(String url){
-        return true;
+        ConnectionManager.getConnectionURL(url);
+        int statusCode = ConnectionManager.getStatusCode();
+        return statusCode == 200;
     }
 
     public boolean hasLoopWithURLStatusCode200() {
@@ -167,7 +170,7 @@ public class PeopleDTO {
     }
 
     public boolean hasCorrectURL(String category, String url){
-        return url.matches("https://swapi.dev/api/" + category + "/[0-9]+");
+        return url.matches("https://swapi.dev/api/" + category + "/[0-9]+/");
     }
 
     public boolean hasArrayGotCorrectURL(String category, List<String> array){
