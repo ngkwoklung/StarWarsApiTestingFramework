@@ -152,6 +152,7 @@ public class PeopleDTO {
     }
 
     public boolean isURLStatusCode200(String url){
+
         ConnectionManager.getConnectionURL(url);
         int statusCode = ConnectionManager.getStatusCode();
         return statusCode == 200;
@@ -184,6 +185,7 @@ public class PeopleDTO {
     }
 
     public boolean hasArrayGotCorrectURL(String category, List<String> array){
+        boolean correctUrl = true;
         for(String url : array) {
             if(!hasCorrectURL(category, url)) {
                 return false;
@@ -192,18 +194,25 @@ public class PeopleDTO {
         return true;
     }
 
+
+    public boolean hasPastDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
+        LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
+        return createdDate.isBefore(LocalDateTime.now());
+    }
+        public boolean hasLogicalEditedDate() {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
+            LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
+            LocalDateTime editedDate  = LocalDateTime.parse(getEdited(), formatter);
+            return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
+        }
+
     public boolean hasPastDate(String stringDate) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
         LocalDateTime createdDate = LocalDateTime.parse(stringDate, formatter);
         return createdDate.isBefore(LocalDateTime.now());
     }
 
-    public boolean hasLogicalEditedDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
-        LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
-        LocalDateTime editedDate  = LocalDateTime.parse(getEdited(), formatter);
-        return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
-    }
     public boolean hasOnlyLetters(String attribute){
         return attribute.matches("[a-z/]+");
     }
@@ -211,5 +220,6 @@ public class PeopleDTO {
     public boolean isListNotNull(List<String> list){
         return list != null;
     }
+
 
 }

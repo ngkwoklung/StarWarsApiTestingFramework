@@ -8,7 +8,10 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.net.ConnectException;
+import java.net.SocketException;
+import java.util.Arrays;
 import java.util.List;
 
 public class PeopleDTOTests {
@@ -75,6 +78,7 @@ public class PeopleDTOTests {
         Mockito.when(mockPeopleDTO.hasAttributeNotEmpty(nonEmptyString)).thenCallRealMethod();
         Assertions.assertTrue(mockPeopleDTO.hasAttributeNotEmpty(nonEmptyString));
         
+
     }
 
     @Test
@@ -166,29 +170,153 @@ public class PeopleDTOTests {
     }
 
     @Test
-    @Disabled
     @DisplayName("check url status code returns 200 then return true")
     void checkUrlStatusCodeReturns200ThenReturnTrue() {
-
-        Assertions.assertTrue(mockPeopleDTO.isURLStatusCode200("http//www.google.com"));
+        Mockito.when(mockPeopleDTO.isURLStatusCode200("https://www.google.com/")).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.isURLStatusCode200("https://www.google.com/"));
 
     }
 
     @Test
-    @Disabled
-    @DisplayName("check that url array status codes return 200")
-    void checkThatUrlArrayStatusCodesReturn200() {
-
+    @DisplayName("check url status code that doesn't return 200 then return false")
+    void checkUrlStatusCodeThatDoesnTReturn200ThenReturnFalse() {
+        Mockito.when(mockPeopleDTO.isURLStatusCode200("https://www.thusuydnutahreilwebuyte.com")).thenCallRealMethod();
+        Assertions.assertThrows(RuntimeException.class, () -> mockPeopleDTO.isURLStatusCode200("https://www.thusuydnutahreilwebuyte.com"));
 
     }
 
-    @ParameterizedTest(name = "{displayName} of {argumentsWithNames}")
-    @ValueSource(strings = {"Film 1", "Film 2", "Film 3", "Film 4", "Film 5", "Film 6"})
+
+    @Test
+    @DisplayName("check that url array status codes return 200")
+    void checkThatUrlArrayStatusCodesReturn200() {
+        List<String> array = Arrays.asList("https://www.google.com", "https://www.youtube.com");
+        Mockito.when(mockPeopleDTO.isURLStatusCode200(Mockito.anyString())).thenCallRealMethod();
+        Mockito.when(mockPeopleDTO.hasLoopWithURLStatusCode200(array)).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.hasLoopWithURLStatusCode200(array));
+
+    }
+
+    @Test
     @DisplayName("check that if a film value is empty return false")
-    void checkThatIfAFilmValueIsEmptyReturnFalse(List<String> films) {
+    void checkThatIfAFilmValueIsEmptyReturnFalse() {
+        List<String> films = Arrays.asList();
+
+        Mockito.when(mockPeopleDTO.getFilms()).thenReturn(films);
+        Mockito.when(mockPeopleDTO.hasFilmEntry()).thenCallRealMethod();
+        Assertions.assertFalse(mockPeopleDTO.hasFilmEntry());
+    }
+
+    @Test
+    @DisplayName("check that if a film has a value return true")
+    void checkThatIfAFilmHasAValueReturnTrue() {
+        List<String> films = Arrays.asList("Film 1", "Film 2", "Film 3");
+
         Mockito.when(mockPeopleDTO.getFilms()).thenReturn(films);
         Mockito.when(mockPeopleDTO.hasFilmEntry()).thenCallRealMethod();
         Assertions.assertTrue(mockPeopleDTO.hasFilmEntry());
+
+    }
+
+    @Test
+    @DisplayName("check that an array that has null values returns false")
+    void checkThatAnArrayDoesnTHaveNullValues() {
+        List<String> array = Arrays.asList(null, "film 2");
+        Mockito.when(mockPeopleDTO.hasArrayContainsNoNullValues(array)).thenCallRealMethod();
+        Assertions.assertFalse(mockPeopleDTO.hasArrayContainsNoNullValues(array));
+    }
+
+    @Test
+    @DisplayName("check that an array that without null values returns true")
+    void checkThatAnArrayThatWithoutNullValuesReturnsTrue() {
+        List<String> array = Arrays.asList("film 1", "film 2");
+        Mockito.when(mockPeopleDTO.hasArrayContainsNoNullValues(array)).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.hasArrayContainsNoNullValues(array));
+
+    }
+
+    @Test
+    @DisplayName("given a URL with an incorrect format return false")
+    void givenAUrlWithAnIncorrectFormatReturnFalse() {
+        Mockito.when(mockPeopleDTO.hasCorrectURL("people", "https://swapi.com/api/people/10")).thenCallRealMethod();
+        Assertions.assertFalse(mockPeopleDTO.hasCorrectURL("people", "https://swapi.com/api/people/10"));
+
+    }
+
+    @Test
+    @DisplayName("given a URL with the correct format return true")
+    void givenAUrlWithTheCorrectFormatReturnTrue() {
+        Mockito.when(mockPeopleDTO.hasCorrectURL("people", "https://swapi.dev/api/people/5")).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.hasCorrectURL("people", "https://swapi.dev/api/people/5"));
+
+    }
+
+    @Test
+    @DisplayName("given an array of URLs that have an incorrect format return false")
+    void givenAnArrayOfUrLsThatHaveAnIncorrectFormatReturnFalse() {
+        List<String> array = Arrays.asList("https://swapi.com/api/people/10", "https://swapi.com/api/people/AZ", "https://swapl.com/api/people/15");
+        Mockito.when(mockPeopleDTO.hasArrayGotCorrectURL("people", array)).thenCallRealMethod();
+        Assertions.assertFalse(mockPeopleDTO.hasArrayGotCorrectURL("people", array));
+    }
+
+    @Test
+    @DisplayName("given an array of URLs that have the correct format return true")
+    void givenAnArrayOfUrLsThatHaveTheCorrectFormatReturnTrue() {
+        List<String> array = Arrays.asList("https://swapi.dev/api/people/15", "https://swapi.dev/api/people/12", "https://swapi.dev/api/people/11");
+        Mockito.when(mockPeopleDTO.hasCorrectURL(Mockito.anyString(), Mockito.anyString())).thenCallRealMethod();
+        Mockito.when(mockPeopleDTO.hasArrayGotCorrectURL("people", array)).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.hasArrayGotCorrectURL("people", array));
+
+    }
+
+    @Test
+    @DisplayName("check that date given is in the past then return true")
+    void checkThatDateGivenIsInThePast() {
+        Mockito.when(mockPeopleDTO.getCreated()).thenReturn("2014-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.hasPastDate()).thenCallRealMethod();
+
+        Assertions.assertTrue(mockPeopleDTO.hasPastDate());
+        
+    }
+
+    @Test
+    @DisplayName("check that date given is in the future then return false")
+    void checkThatDateGivenIsInTheFutureThenReturnFalse() {
+        Mockito.when(mockPeopleDTO.getCreated()).thenReturn("2023-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.hasPastDate()).thenCallRealMethod();
+
+        Assertions.assertFalse(mockPeopleDTO.hasPastDate());
+
+    }
+
+    @Test
+    @DisplayName("Testing DTO method hasarraygotcorrecturl")
+    void testingDtoMethodHasarraygotcorrecturl() {
+        PeopleDTO peopleDTO = new PeopleDTO();
+        List<String> array = Arrays.asList("https://swapi.dev/api/people/15", "https://swapi.dev/api/people/12", "https://swapi.dev/api/people/11");
+        boolean result = peopleDTO.hasArrayGotCorrectURL("people", array);
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    @DisplayName("check that edited date is after created date then return true")
+    void checkThatEditedDateIsAfterCreatedDateThenReturnTrue() {
+        Mockito.when(mockPeopleDTO.getCreated()).thenReturn("2014-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.getEdited()).thenReturn("2015-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.hasLogicalEditedDate()).thenCallRealMethod();
+
+        Assertions.assertTrue(mockPeopleDTO.hasLogicalEditedDate());
+    }
+
+    @Test
+    @DisplayName("check that if edited date is before created date then return false")
+    void checkThatIfEditedDateIsBeforeCreatedDateThenReturnFalse() {
+        Mockito.when(mockPeopleDTO.getCreated()).thenReturn("2014-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.getEdited()).thenReturn("2013-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.hasLogicalEditedDate()).thenCallRealMethod();
+
+        Assertions.assertFalse(mockPeopleDTO.hasLogicalEditedDate());
+
 
     }
 
