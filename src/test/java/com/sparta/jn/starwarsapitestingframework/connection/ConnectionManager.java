@@ -71,6 +71,24 @@ public class ConnectionManager {
         return response;
     }
 
+    public static HttpResponse<String> getResponse(String resource) {
+        var client = HttpClient.newHttpClient();
+        var request = HttpRequest
+                .newBuilder()
+                .uri(URI.create(resource))
+                .build();
+
+        HttpResponse<String> response =null;
+
+        try {
+            response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        } catch (IOException | InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        logger.log(Level.FINE, "Response is: " + response.body());
+        return response;
+    }
+
     public static String getResponseBody(String resource, String id) {
         return getResponse(resource, id).body();
     }
@@ -79,9 +97,14 @@ public class ConnectionManager {
         return getResponse(resource, String.valueOf(id)).body();
     }
 
+    public static String getResponseBody(String resource) {
+        return getResponse(resource).body();
+    }
+
     public static int getStatusCode() {
         return getResponse().statusCode();
     }
+
 
     public static String getHeader(String key) {
         return getResponse()
@@ -90,7 +113,4 @@ public class ConnectionManager {
                 .orElse("Key not found");
     }
 
-    public static void main(String[] args) {
-        System.out.println(getConnectionURL("people", "1"));
-    }
 }
