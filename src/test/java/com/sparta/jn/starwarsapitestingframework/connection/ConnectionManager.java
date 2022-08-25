@@ -67,7 +67,7 @@ public class ConnectionManager {
         return response;
     }
 
-    private static HttpResponse<String> getResponse(String resource) {
+    public static HttpResponse<String> getResponse(String resource) {
         var client = HttpClient.newHttpClient();
         var request = HttpRequest
                 .newBuilder()
