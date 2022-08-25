@@ -10,11 +10,11 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
+
 
 
 public class PeoplePojoTests {
@@ -447,14 +447,15 @@ public class PeoplePojoTests {
 
                 }
             }
-            @Disabled
+
             @Nested
             @Tag("datesCheck")
             class DatesTests {
 
-                LocalDateTime dateConverter(String dateString) {
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.nnnnnnn'Z')");
-                    return LocalDateTime.parse(sdf.format(dateString));
+                LocalDateTime dateConverter(String stringDate) {
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
+                    LocalDateTime createdDate = LocalDateTime.parse(stringDate, formatter);
+                    return createdDate;
                 }
 
                 @Nested
