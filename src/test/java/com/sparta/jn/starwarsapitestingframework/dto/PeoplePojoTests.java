@@ -1,10 +1,8 @@
 package com.sparta.jn.starwarsapitestingframework.dto;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.jn.starwarsapitestingframework.PeoplePojo;
 import org.junit.jupiter.api.*;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -14,8 +12,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
-
-
 
 public class PeoplePojoTests {
     private static final String URL = "https://swapi.dev/api/people/1/";
@@ -28,7 +24,6 @@ public class PeoplePojoTests {
         return url;
 
     }
-
     @BeforeAll
     static void initAll() {
         HttpClient httpClient = HttpClient.newHttpClient();
@@ -45,7 +40,6 @@ public class PeoplePojoTests {
             e.printStackTrace();
         }
     }
-
 
     @BeforeEach
     void init(TestInfo testInfo) {
