@@ -159,8 +159,8 @@ public class PeopleDTO {
 
     }
 
-    public boolean hasLoopWithURLStatusCode200() {
-        for(String url : films){
+    public boolean hasLoopWithURLStatusCode200(List<String> urls) {
+        for(String url : urls){
             if(!isURLStatusCode200(url)) {
                 return false;
             }
@@ -168,8 +168,12 @@ public class PeopleDTO {
         return true;
     }
 
-    public boolean hasFilmEntry() {
-        return !getFilms().isEmpty();
+    public boolean hasListNotEmpty(List<String> list) {
+        return !list.isEmpty();
+    }
+
+    public boolean hasFilmEntry(){
+        return !films.isEmpty();
     }
 
     public boolean hasArrayContainsNoNullValues(List<String> list) { //returns true if contains null?
@@ -201,4 +205,12 @@ public class PeopleDTO {
         LocalDateTime editedDate = LocalDateTime.parse(sdf.format(edited));
         return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
     }
+    public boolean hasOnlyLetters(String attribute){
+        return attribute.matches("[a-z/]+");
+    }
+
+    public boolean isListNotNull(List<String> list){
+        return list != null;
+    }
+
 }
