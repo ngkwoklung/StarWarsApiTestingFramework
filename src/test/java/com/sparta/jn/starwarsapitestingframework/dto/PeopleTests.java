@@ -35,9 +35,9 @@ public class PeopleTests {
         httpResponse = null;
         try {
             httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            System.out.println(httpResponse.statusCode());
-            System.out.println(httpResponse.headers());
-            System.out.println(httpResponse.body());
+//            System.out.println(httpResponse.statusCode());
+//            System.out.println(httpResponse.headers());
+//            System.out.println(httpResponse.body());
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
@@ -72,6 +72,7 @@ public class PeopleTests {
             String gender = peoplePojo.getGender();
             Assertions.assertTrue(gender.equals("Male") || gender.equals("Female")
                     || gender.equals("unknown") || gender.equals("n/a"));
+            System.out.println(peoplePojo.getGender());
         }
     }
 

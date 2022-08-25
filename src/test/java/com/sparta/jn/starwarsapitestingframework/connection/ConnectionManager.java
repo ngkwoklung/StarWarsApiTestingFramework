@@ -20,16 +20,16 @@ public class ConnectionManager {
         consoleHandler.setLevel(Level.INFO);
     }
 
-    public static String getConnection() {
+    public static String getConnectionURL() {
         return BASEURL;
     }
 
-    public static String getConnection(String resource, String id) {
-        return String.valueOf(getResponse(resource, id).uri());
+    public static String getConnectionURL(String resource, String id) {
+        return BASEURL + resource + "/" + id + "?format=json";
     }
 
-    public static String getConnection(String resource, int id) {
-        return BASEURL + resource + "/" + id;
+    public static String getConnectionURL(String resource, int id) {
+        return BASEURL + resource + "/" + id + "?format=json";
     }
 
     private static HttpResponse<String> getResponse() {
@@ -67,6 +67,14 @@ public class ConnectionManager {
         return response;
     }
 
+    public static String getResponseBody(String resource, String id) {
+        return getResponse(resource, id).body();
+    }
+
+    public static String getResponseBody(String resource, int id) {
+        return getResponse(resource, String.valueOf(id)).body();
+    }
+
     public static int getStatusCode() {
         return getResponse().statusCode();
     }
@@ -79,6 +87,6 @@ public class ConnectionManager {
     }
 
     public static void main(String[] args) {
-        System.out.println(getConnection("people", "1"));
+        System.out.println(getConnectionURL("people", "1"));
     }
 }
