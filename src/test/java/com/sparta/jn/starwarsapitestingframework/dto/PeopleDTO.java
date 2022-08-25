@@ -114,7 +114,10 @@ public class PeopleDTO {
                         "}";
     }
     public boolean hasMassAboveZero() {
-        return Integer.parseInt(getMass()) > 0;
+
+
+     return Double.parseDouble(mass) > 0;
+
     }
 
 
@@ -141,11 +144,11 @@ public class PeopleDTO {
     }
 
     public boolean hasMeasurementAboveZero(String measurement) {
-        return Integer.parseInt(measurement) > 0;
+        return Double.parseDouble(measurement) > 0;
     }
 
     public boolean hasMeasurementContainingNumbers(String measurement) {
-        return measurement.matches("[0-9]+");
+        return measurement.matches("[0-9.]+");
     }
 
     public boolean isURLStatusCode200(String url){
@@ -153,6 +156,7 @@ public class PeopleDTO {
         ConnectionManager.getConnectionURL(url);
         int statusCode = ConnectionManager.getStatusCode();
         return statusCode == 200;
+
     }
 
     public boolean hasLoopWithURLStatusCode200(List<String> urls) {
@@ -164,8 +168,12 @@ public class PeopleDTO {
         return true;
     }
 
-    public boolean hasFilmEntry() {
-        return !getFilms().isEmpty();
+    public boolean hasListNotEmpty(List<String> list) {
+        return !list.isEmpty();
+    }
+
+    public boolean hasFilmEntry(){
+        return !films.isEmpty();
     }
 
     public boolean hasArrayContainsNoNullValues(List<String> list) { //returns true if contains null?
@@ -173,7 +181,7 @@ public class PeopleDTO {
     }
 
     public boolean hasCorrectURL(String category, String url){
-        return url.matches("https://swapi.dev/api/" + category + "/[0-9]+");
+        return url.matches("https://swapi.dev/api/" + category + "/[0-9]+/");
     }
 
     public boolean hasArrayGotCorrectURL(String category, List<String> array){
@@ -186,6 +194,7 @@ public class PeopleDTO {
         return true;
     }
 
+
     public boolean hasPastDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
         LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
@@ -197,4 +206,20 @@ public class PeopleDTO {
             LocalDateTime editedDate  = LocalDateTime.parse(getEdited(), formatter);
             return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
         }
+
+    public boolean hasPastDate(String stringDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
+        LocalDateTime createdDate = LocalDateTime.parse(stringDate, formatter);
+        return createdDate.isBefore(LocalDateTime.now());
+    }
+
+    public boolean hasOnlyLetters(String attribute){
+        return attribute.matches("[a-z/]+");
+    }
+
+    public boolean isListNotNull(List<String> list){
+        return list != null;
+    }
+
+
 }

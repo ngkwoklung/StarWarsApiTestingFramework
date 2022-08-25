@@ -12,7 +12,9 @@ import java.util.logging.Logger;
 public class ConnectionManager {
     private static final Logger logger = Logger.getLogger("my logger");
     private static final ConsoleHandler consoleHandler = new ConsoleHandler();
+
     private static String BASEURL = "https://swapi.dev/api/";
+
     {
         logger.setLevel(Level.FINE);
         logger.setUseParentHandlers(false);
@@ -34,6 +36,7 @@ public class ConnectionManager {
     public static String getConnectionURL(String url) {
         return BASEURL = url;
     }
+
     private static HttpResponse<String> getResponse() {
         var client = HttpClient.newHttpClient();
         var request = HttpRequest
@@ -95,9 +98,14 @@ public class ConnectionManager {
         return getResponse(resource, String.valueOf(id)).body();
     }
 
+    public static String getResponseBody(String resource) {
+        return getResponse(resource).body();
+    }
+
     public static int getStatusCode() {
         return getResponse().statusCode();
     }
+
 
     public static int getStatusCode(String url) {
         return getResponse(url).statusCode();
@@ -110,7 +118,4 @@ public class ConnectionManager {
                 .orElse("Key not found");
     }
 
-    public static void main(String[] args) {
-        System.out.println(getConnectionURL("people", "1"));
-    }
 }
