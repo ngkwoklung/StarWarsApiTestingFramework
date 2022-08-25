@@ -352,6 +352,7 @@ public class PeoplePojoTests {
                 @DisplayName("Check that species urls all return a 200 status code")
                 void checkThatSpeciesUrlsAllReturnA200StatusCode() {
                     Assertions.assertTrue(hasAllUrlsReturn200StatusCode(peoplePojo.getSpecies()));
+
                 }
 
                 @Test
