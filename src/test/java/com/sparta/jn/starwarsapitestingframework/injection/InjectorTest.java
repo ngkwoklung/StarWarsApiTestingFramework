@@ -17,30 +17,7 @@ import java.net.http.HttpResponse;
 public class InjectorTest {
     private static final String BASE_URL = "https://swapi.dev/api/";
     private static PeopleDTO dto;
-//    private static HttpResponse<String> httpResponse;
 
-//    @BeforeAll
-//    static void initAll() {
-//        HttpClient httpClient = HttpClient.newHttpClient();
-//        HttpRequest httpRequest = HttpRequest
-//                .newBuilder()
-//                .uri(URI.create("https://swapi.dev/api/people/1"))
-//                .build();
-//        httpResponse = null;
-//        try {
-//            httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-//
-//        } catch (IOException | InterruptedException e) {
-//            e.printStackTrace();
-//        }
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        try {
-//            dto = objectMapper.readValue(httpResponse.body(), PeopleDTO.class);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 
     private PeopleDTO getDtoWithStringId(String id) {
         HttpResponse<String> httpResponse;

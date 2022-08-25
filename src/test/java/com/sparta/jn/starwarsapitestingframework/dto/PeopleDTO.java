@@ -1,8 +1,7 @@
 package com.sparta.jn.starwarsapitestingframework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sparta.jn.starwarsapitestingframework.injection.Injector;
-
+import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -115,12 +114,14 @@ public class PeopleDTO {
                         "}";
     }
     public boolean hasMassAboveZero() {
-        return Integer.parseInt(getMass()) > 0;
+
+
+     return Double.parseDouble(mass) > 0;
+
     }
 
-
     public boolean hasGender() {
-        return (gender.equals("Male") || gender.equals("Female") || gender.equals("unknown") || gender.equals("n/a"));
+        return (getGender().equals("Male") || getGender().equals("Female") || getGender().equals("unknown") || getGender().equals("n/a"));
     }
 
     public boolean hasAttributeNotEmpty(String attribute) {
@@ -136,23 +137,29 @@ public class PeopleDTO {
     }
 
     public boolean hasBirthYearFormat() {
-        return (birthYear.matches("[0-9]+BBY") || birthYear.matches("[0-9]+ABY") || birthYear.equals("unknown"));
+
+        return (getBirthYear().matches("[0-9]+BBY") || getBirthYear().matches("[0-9]+ABY") || getBirthYear().equals("unknown"));
+
     }
 
     public boolean hasMeasurementAboveZero(String measurement) {
-        return Integer.parseInt(measurement) > 0;
+        return Double.parseDouble(measurement) > 0;
     }
 
     public boolean hasMeasurementContainingNumbers(String measurement) {
-        return measurement.matches("[0-9]+");
+        return measurement.matches("[0-9.]+");
     }
 
     public boolean isURLStatusCode200(String url){
-        return true;
+
+        ConnectionManager.getConnectionURL(url);
+        int statusCode = ConnectionManager.getStatusCode();
+        return statusCode == 200;
+
     }
 
-    public boolean hasLoopWithURLStatusCode200() {
-        for(String url : films){
+    public boolean hasLoopWithURLStatusCode200(List<String> urls) {
+        for(String url : urls){
             if(!isURLStatusCode200(url)) {
                 return false;
             }
@@ -160,19 +167,24 @@ public class PeopleDTO {
         return true;
     }
 
-    public boolean hasFilmEntry() {
+    public boolean hasListNotEmpty(List<String> list) {
+        return !list.isEmpty();
+    }
+
+    public boolean hasFilmEntry(){
         return !films.isEmpty();
     }
 
-    public boolean hasArrayNotNull(List<String> list) { //returns true if contains null?
-        return list.contains(null);
+    public boolean hasArrayContainsNoNullValues(List<String> list) { //returns true if contains null?
+        return !list.contains(null);
     }
 
     public boolean hasCorrectURL(String category, String url){
-        return url.matches("https://swapi.dev/api/" + category + "/[0-9]+");
+        return url.matches("https://swapi.dev/api/" + category + "/[0-9]+/");
     }
 
     public boolean hasArrayGotCorrectURL(String category, List<String> array){
+        boolean correctUrl = true;
         for(String url : array) {
             if(!hasCorrectURL(category, url)) {
                 return false;
@@ -181,16 +193,31 @@ public class PeopleDTO {
         return true;
     }
 
+
     public boolean hasPastDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
         LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
         return createdDate.isBefore(LocalDateTime.now());
+
+    }
+        public boolean hasLogicalEditedDate() {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
+            LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
+            LocalDateTime editedDate  = LocalDateTime.parse(getEdited(), formatter);
+            return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
+        }
+
+    public boolean hasPastDate(String stringDate) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
+        LocalDateTime createdDate = LocalDateTime.parse(stringDate, formatter);
+        return createdDate.isBefore(LocalDateTime.now());
     }
 
-    public boolean hasLogicalEditedDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
-        LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
-        LocalDateTime editedDate  = LocalDateTime.parse(getEdited(), formatter);
-        return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
+    public boolean hasOnlyLetters(String attribute){
+        return attribute.matches("[a-z/]+");
+    }
+
+    public boolean isListNotNull(List<String> list){
+        return list != null;
     }
 }
