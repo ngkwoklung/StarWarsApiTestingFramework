@@ -114,12 +114,14 @@ public class PeopleDTO {
                         "}";
     }
     public boolean hasMassAboveZero() {
+
         return Double.parseDouble(mass) > 0;
+
     }
 
 
     public boolean hasGender() {
-        return (gender.equals("Male") || gender.equals("Female") || gender.equals("unknown") || gender.equals("n/a"));
+        return (getGender().equals("Male") || getGender().equals("Female") || getGender().equals("unknown") || getGender().equals("n/a"));
     }
 
     public boolean hasAttributeNotEmpty(String attribute) {
@@ -135,7 +137,9 @@ public class PeopleDTO {
     }
 
     public boolean hasBirthYearFormat() {
-        return (birthYear.matches("[0-9]+BBY") || birthYear.matches("[0-9]+ABY") || birthYear.equals("unknown"));
+
+        return (getBirthYear().matches("[0-9]+BBY") || getBirthYear().matches("[0-9]+ABY") || getBirthYear().equals("unknown"));
+
     }
 
     public boolean hasMeasurementAboveZero(String measurement) {
@@ -147,9 +151,11 @@ public class PeopleDTO {
     }
 
     public boolean isURLStatusCode200(String url){
+
         ConnectionManager.getConnectionURL(url);
         int statusCode = ConnectionManager.getStatusCode();
         return statusCode == 200;
+
     }
 
     public boolean hasLoopWithURLStatusCode200() {
@@ -162,11 +168,11 @@ public class PeopleDTO {
     }
 
     public boolean hasFilmEntry() {
-        return !films.isEmpty();
+        return !getFilms().isEmpty();
     }
 
-    public boolean hasArrayNotNull(List<String> list) { //returns true if contains null?
-        return list.contains(null);
+    public boolean hasArrayContainsNoNullValues(List<String> list) { //returns true if contains null?
+        return !list.contains(null);
     }
 
     public boolean hasCorrectURL(String category, String url){
