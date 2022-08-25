@@ -8,7 +8,9 @@ import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Nested;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.net.ConnectException;
+import java.net.SocketException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -76,6 +78,7 @@ public class PeopleDTOTests {
         Mockito.when(mockPeopleDTO.hasAttributeNotEmpty(nonEmptyString)).thenCallRealMethod();
         Assertions.assertTrue(mockPeopleDTO.hasAttributeNotEmpty(nonEmptyString));
         
+
     }
 
     @Test
@@ -167,19 +170,29 @@ public class PeopleDTOTests {
     }
 
     @Test
-    @Disabled
     @DisplayName("check url status code returns 200 then return true")
     void checkUrlStatusCodeReturns200ThenReturnTrue() {
-
-        Assertions.assertTrue(mockPeopleDTO.isURLStatusCode200("http//www.google.com"));
+        Mockito.when(mockPeopleDTO.isURLStatusCode200("https://www.google.com/")).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.isURLStatusCode200("https://www.google.com/"));
 
     }
 
     @Test
-    @Disabled
+    @DisplayName("check url status code that doesn't return 200 then return false")
+    void checkUrlStatusCodeThatDoesnTReturn200ThenReturnFalse() {
+        Mockito.when(mockPeopleDTO.isURLStatusCode200("https://www.thusuydnutahreilwebuyte.com")).thenCallRealMethod();
+        Assertions.assertThrows(RuntimeException.class, () -> mockPeopleDTO.isURLStatusCode200("https://www.thusuydnutahreilwebuyte.com"));
+
+    }
+
+
+    @Test
     @DisplayName("check that url array status codes return 200")
     void checkThatUrlArrayStatusCodesReturn200() {
-
+        List<String> array = Arrays.asList("https://www.google.com", "https://www.youtube.com");
+        Mockito.when(mockPeopleDTO.isURLStatusCode200(Mockito.anyString())).thenCallRealMethod();
+        Mockito.when(mockPeopleDTO.hasLoopWithURLStatusCode200(array)).thenCallRealMethod();
+        Assertions.assertTrue(mockPeopleDTO.hasLoopWithURLStatusCode200(array));
 
     }
 
@@ -256,13 +269,23 @@ public class PeopleDTOTests {
     }
 
     @Test
-    @DisplayName("check that date given is in the past")
+    @DisplayName("check that date given is in the past then return true")
     void checkThatDateGivenIsInThePast() {
         Mockito.when(mockPeopleDTO.getCreated()).thenReturn("2014-12-09T13:50:51.644000Z");
         Mockito.when(mockPeopleDTO.hasPastDate()).thenCallRealMethod();
 
         Assertions.assertTrue(mockPeopleDTO.hasPastDate());
         
+    }
+
+    @Test
+    @DisplayName("check that date given is in the future then return false")
+    void checkThatDateGivenIsInTheFutureThenReturnFalse() {
+        Mockito.when(mockPeopleDTO.getCreated()).thenReturn("2023-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.hasPastDate()).thenCallRealMethod();
+
+        Assertions.assertFalse(mockPeopleDTO.hasPastDate());
+
     }
 
     @Test
@@ -274,5 +297,28 @@ public class PeopleDTOTests {
 
         Assertions.assertTrue(result);
     }
+
+    @Test
+    @DisplayName("check that edited date is after created date then return true")
+    void checkThatEditedDateIsAfterCreatedDateThenReturnTrue() {
+        Mockito.when(mockPeopleDTO.getCreated()).thenReturn("2014-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.getEdited()).thenReturn("2015-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.hasLogicalEditedDate()).thenCallRealMethod();
+
+        Assertions.assertTrue(mockPeopleDTO.hasLogicalEditedDate());
+    }
+
+    @Test
+    @DisplayName("check that if edited date is before created date then return false")
+    void checkThatIfEditedDateIsBeforeCreatedDateThenReturnFalse() {
+        Mockito.when(mockPeopleDTO.getCreated()).thenReturn("2014-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.getEdited()).thenReturn("2013-12-09T13:50:51.644000Z");
+        Mockito.when(mockPeopleDTO.hasLogicalEditedDate()).thenCallRealMethod();
+
+        Assertions.assertFalse(mockPeopleDTO.hasLogicalEditedDate());
+
+
+    }
+
 
 }
