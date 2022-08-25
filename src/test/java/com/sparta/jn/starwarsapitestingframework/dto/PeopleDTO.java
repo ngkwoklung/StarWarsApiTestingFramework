@@ -1,8 +1,10 @@
 package com.sparta.jn.starwarsapitestingframework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sparta.jn.starwarsapitestingframework.injection.Injector;
 
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -180,15 +182,15 @@ public class PeopleDTO {
     }
 
     public boolean hasPastDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-        LocalDateTime localDateTime = LocalDateTime.parse(sdf.format(created));
-        return localDateTime.isBefore(LocalDateTime.now());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
+        LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
+        return createdDate.isBefore(LocalDateTime.now());
     }
 
     public boolean hasLogicalEditedDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX");
-        LocalDateTime createdDate = LocalDateTime.parse(sdf.format(created));
-        LocalDateTime editedDate = LocalDateTime.parse(sdf.format(edited));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
+        LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
+        LocalDateTime editedDate  = LocalDateTime.parse(getEdited(), formatter);
         return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
     }
 }
