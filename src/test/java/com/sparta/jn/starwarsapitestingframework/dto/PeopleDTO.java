@@ -1,6 +1,7 @@
 package com.sparta.jn.starwarsapitestingframework.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.sparta.jn.starwarsapitestingframework.connection.ConnectionManager;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -113,7 +114,7 @@ public class PeopleDTO {
                         "}";
     }
     public boolean hasMassAboveZero() {
-        return Integer.parseInt(mass) > 0;
+        return Integer.parseInt(getMass()) > 0;
     }
 
 
@@ -134,7 +135,9 @@ public class PeopleDTO {
     }
 
     public boolean hasBirthYearFormat() {
+
         return (getBirthYear().matches("[0-9]+BBY") || getBirthYear().matches("[0-9]+ABY") || getBirthYear().equals("unknown"));
+
     }
 
     public boolean hasMeasurementAboveZero(String measurement) {
@@ -146,6 +149,7 @@ public class PeopleDTO {
     }
 
     public boolean isURLStatusCode200(String url){
+        ConnectionManager.getStatusCode();
         return true;
     }
 
@@ -159,11 +163,11 @@ public class PeopleDTO {
     }
 
     public boolean hasFilmEntry() {
-        return !films.isEmpty();
+        return !getFilms().isEmpty();
     }
 
-    public boolean hasArrayNotNull(List<String> list) { //returns true if contains null?
-        return list.contains(null);
+    public boolean hasArrayContainsNoNullValues(List<String> list) { //returns true if contains null?
+        return !list.contains(null);
     }
 
     public boolean hasCorrectURL(String category, String url){
