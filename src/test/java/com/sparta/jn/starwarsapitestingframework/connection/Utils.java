@@ -12,7 +12,7 @@ import java.util.Properties;
 public class Utils {
     static RequestSpecification requestSpec;
 
-    RequestSpecification requestSpecification() {
+    public RequestSpecification requestSpecification() {
         if(requestSpec == null) {
             PrintStream log = null;
             try {
@@ -22,11 +22,9 @@ public class Utils {
             }
             requestSpec = new RequestSpecBuilder()
                     .setBaseUri(getGlobalValue("baseURL"))
-                    .addQueryParam("key", "qaclick123")
                     .addFilter(RequestLoggingFilter.logRequestTo(log))
                     .addFilter(ResponseLoggingFilter.logResponseTo(log))
                     .setContentType(ContentType.JSON).build();
-
             return requestSpec;
         }
         return requestSpec;

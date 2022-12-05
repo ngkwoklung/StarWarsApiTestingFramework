@@ -39,6 +39,9 @@ public class PeopleDTO {
     private String name;
     @JsonProperty("height")
     private String height;
+
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
+
     public List<String> getFilms(){
         return films;
     }
@@ -57,6 +60,8 @@ public class PeopleDTO {
     public String getCreated(){
         return created;
     }
+
+
     public String getMass(){
         return mass;
     }
@@ -192,20 +197,17 @@ public class PeopleDTO {
 
 
     public boolean hasPastDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
         LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
         return createdDate.isBefore(LocalDateTime.now());
 
     }
         public boolean hasLogicalEditedDate() {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
             LocalDateTime createdDate = LocalDateTime.parse(getCreated(), formatter);
             LocalDateTime editedDate  = LocalDateTime.parse(getEdited(), formatter);
             return (editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
         }
 
     public boolean hasPastDate(String stringDate) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.nnnnnn'Z'");
         LocalDateTime createdDate = LocalDateTime.parse(stringDate, formatter);
         return createdDate.isBefore(LocalDateTime.now());
     }

@@ -44,6 +44,4 @@ public class SWAPITests {
         LocalDateTime editedDate  = LocalDateTime.parse(peoplePojo.getEdited(), formatter);
         Assertions.assertTrue(editedDate.isAfter(createdDate) && editedDate.isBefore(LocalDateTime.now()));
     }
-
-
 }
