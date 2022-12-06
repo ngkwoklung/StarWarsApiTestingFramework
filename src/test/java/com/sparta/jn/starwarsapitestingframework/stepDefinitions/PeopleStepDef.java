@@ -14,14 +14,13 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.junit.Assert;
 
-import java.util.Optional;
-
 import static io.restassured.RestAssured.given;
 
-public class StepDef extends Utils {
+public class PeopleStepDef extends Utils {
     RequestSpecification requestSpecification;
     ResponseSpecification responseSpecification;
     Response response;
+    static int MAX_PEOPLE;
 
     @Given("GET People resource")
     public void get_people_resource() {
@@ -29,6 +28,20 @@ public class StepDef extends Utils {
     }
     @When("user calls {string} with {string} http request and id is {int}")
     public void user_calls_with_http_request_and_id_is(String resource, String method, int id) {
+        APIResources apiResource = APIResources.valueOf(resource);
+        System.out.println(apiResource.getResource());
+        responseSpecification = new ResponseSpecBuilder()
+                .expectStatusCode(200)
+                .expectContentType(ContentType.JSON)
+                .build();
+
+        if (method.equalsIgnoreCase("GET")) {
+            response = requestSpecification.when().get(apiResource.getResource() + id);
+        }
+    }
+
+    @When("user calls {string} with {string} http request and id is {string}")
+    public void user_calls_with_http_request_and_id_is(String resource, String method, String id) {
         APIResources apiResource = APIResources.valueOf(resource);
         System.out.println(apiResource.getResource());
         responseSpecification = new ResponseSpecBuilder()
@@ -50,5 +63,17 @@ public class StepDef extends Utils {
     public void the_edited_date_is_after_created_date() {
         PeopleDTO peopleDto = Injector.injectPeopleDTO(response);
         Assert.assertTrue(peopleDto.hasLogicalEditedDate());
+    }
+
+    @When("user get Max number of people")
+    public void user_get_max_number_of_people() {
+        response = requestSpecification.when().get(APIResources.getPeopleAPI.getResource());
+        MAX_PEOPLE = Integer.parseInt(getJsonPath(response, "count"));
+    }
+
+    @When("user call {string} with {string} http request and id is {int} to {string}")
+    public void user_call_with_http_request_and_id_is_to(String string, String string2, Integer int1, String string3) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
     }
 }

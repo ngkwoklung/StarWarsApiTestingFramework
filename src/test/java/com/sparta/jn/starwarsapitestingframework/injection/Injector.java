@@ -43,7 +43,7 @@ public class Injector {
     public static PeopleDTO injectPeopleDTO (Response response) {
         PeopleDTO dto = new PeopleDTO();
         try {
-            dto = mapper.readValue(response.body().toString(), PeopleDTO.class);
+            dto = mapper.readValue(response.getBody().asString(), PeopleDTO.class);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }

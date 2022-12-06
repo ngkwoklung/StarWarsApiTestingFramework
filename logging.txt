@@ -12,7 +12,7 @@ Multiparts:		<none>
 Body:			<none>
 HTTP/1.1 200 OK
 Server: nginx/1.16.1
-Date: Mon, 05 Dec 2022 17:50:29 GMT
+Date: Tue, 06 Dec 2022 12:04:48 GMT
 Content-Type: application/json
 Transfer-Encoding: chunked
 Connection: keep-alive
@@ -52,4 +52,474 @@ Strict-Transport-Security: max-age=15768000
     "created": "2014-12-09T13:50:51.644000Z",
     "edited": "2014-12-20T21:17:56.891000Z",
     "url": "https://swapi.dev/api/people/1/"
+}
+Request method:	GET
+Request URI:	https://swapi.dev/api/people/1
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Date: Tue, 06 Dec 2022 12:04:48 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+ETag: "ee398610435c328f4d0a4e1b0d2f7bbc"
+Allow: GET, HEAD, OPTIONS
+Strict-Transport-Security: max-age=15768000
+
+{
+    "name": "Luke Skywalker",
+    "height": "172",
+    "mass": "77",
+    "hair_color": "blond",
+    "skin_color": "fair",
+    "eye_color": "blue",
+    "birth_year": "19BBY",
+    "gender": "male",
+    "homeworld": "https://swapi.dev/api/planets/1/",
+    "films": [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/6/"
+    ],
+    "species": [
+        
+    ],
+    "vehicles": [
+        "https://swapi.dev/api/vehicles/14/",
+        "https://swapi.dev/api/vehicles/30/"
+    ],
+    "starships": [
+        "https://swapi.dev/api/starships/12/",
+        "https://swapi.dev/api/starships/22/"
+    ],
+    "created": "2014-12-09T13:50:51.644000Z",
+    "edited": "2014-12-20T21:17:56.891000Z",
+    "url": "https://swapi.dev/api/people/1/"
+}
+Request method:	GET
+Request URI:	https://swapi.dev/api/people/82
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Date: Tue, 06 Dec 2022 12:04:48 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+ETag: "7bcdb10fc4f1a925fc77562f200399b7"
+Allow: GET, HEAD, OPTIONS
+Strict-Transport-Security: max-age=15768000
+
+{
+    "name": "Sly Moore",
+    "height": "178",
+    "mass": "48",
+    "hair_color": "none",
+    "skin_color": "pale",
+    "eye_color": "white",
+    "birth_year": "unknown",
+    "gender": "female",
+    "homeworld": "https://swapi.dev/api/planets/60/",
+    "films": [
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/"
+    ],
+    "species": [
+        
+    ],
+    "vehicles": [
+        
+    ],
+    "starships": [
+        
+    ],
+    "created": "2014-12-20T20:18:37.619000Z",
+    "edited": "2014-12-20T21:17:50.496000Z",
+    "url": "https://swapi.dev/api/people/82/"
+}
+Request method:	GET
+Request URI:	https://swapi.dev/api/people/40
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Date: Tue, 06 Dec 2022 12:04:49 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+ETag: "abd8a8279461c30850814c1349d929df"
+Allow: GET, HEAD, OPTIONS
+Strict-Transport-Security: max-age=15768000
+
+{
+    "name": "Watto",
+    "height": "137",
+    "mass": "unknown",
+    "hair_color": "black",
+    "skin_color": "blue, grey",
+    "eye_color": "yellow",
+    "birth_year": "unknown",
+    "gender": "male",
+    "homeworld": "https://swapi.dev/api/planets/34/",
+    "films": [
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/"
+    ],
+    "species": [
+        "https://swapi.dev/api/species/13/"
+    ],
+    "vehicles": [
+        
+    ],
+    "starships": [
+        
+    ],
+    "created": "2014-12-19T17:48:54.647000Z",
+    "edited": "2014-12-20T21:17:50.395000Z",
+    "url": "https://swapi.dev/api/people/40/"
+}
+Request method:	GET
+Request URI:	https://swapi.dev/api/people/10
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Date: Tue, 06 Dec 2022 12:04:49 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+ETag: "cb2560521268c820fb026924d6c8a800"
+Allow: GET, HEAD, OPTIONS
+Strict-Transport-Security: max-age=15768000
+
+{
+    "name": "Obi-Wan Kenobi",
+    "height": "182",
+    "mass": "77",
+    "hair_color": "auburn, white",
+    "skin_color": "fair",
+    "eye_color": "blue-gray",
+    "birth_year": "57BBY",
+    "gender": "male",
+    "homeworld": "https://swapi.dev/api/planets/20/",
+    "films": [
+        "https://swapi.dev/api/films/1/",
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/"
+    ],
+    "species": [
+        
+    ],
+    "vehicles": [
+        "https://swapi.dev/api/vehicles/38/"
+    ],
+    "starships": [
+        "https://swapi.dev/api/starships/48/",
+        "https://swapi.dev/api/starships/59/",
+        "https://swapi.dev/api/starships/64/",
+        "https://swapi.dev/api/starships/65/",
+        "https://swapi.dev/api/starships/74/"
+    ],
+    "created": "2014-12-10T16:16:29.192000Z",
+    "edited": "2014-12-20T21:17:50.325000Z",
+    "url": "https://swapi.dev/api/people/10/"
+}
+Request method:	GET
+Request URI:	https://swapi.dev/api/people/20
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Date: Tue, 06 Dec 2022 12:04:49 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+ETag: "fdfe369e3ac2a503ce5d4529eea0ea40"
+Allow: GET, HEAD, OPTIONS
+Strict-Transport-Security: max-age=15768000
+
+{
+    "name": "Yoda",
+    "height": "66",
+    "mass": "17",
+    "hair_color": "white",
+    "skin_color": "green",
+    "eye_color": "brown",
+    "birth_year": "896BBY",
+    "gender": "male",
+    "homeworld": "https://swapi.dev/api/planets/28/",
+    "films": [
+        "https://swapi.dev/api/films/2/",
+        "https://swapi.dev/api/films/3/",
+        "https://swapi.dev/api/films/4/",
+        "https://swapi.dev/api/films/5/",
+        "https://swapi.dev/api/films/6/"
+    ],
+    "species": [
+        "https://swapi.dev/api/species/6/"
+    ],
+    "vehicles": [
+        
+    ],
+    "starships": [
+        
+    ],
+    "created": "2014-12-15T12:26:01.042000Z",
+    "edited": "2014-12-20T21:17:50.345000Z",
+    "url": "https://swapi.dev/api/people/20/"
+}
+Request method:	GET
+Request URI:	https://swapi.dev/api/people/30
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Date: Tue, 06 Dec 2022 12:04:49 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+ETag: "eca2fce787471c70e47ade74b532065f"
+Allow: GET, HEAD, OPTIONS
+Strict-Transport-Security: max-age=15768000
+
+{
+    "name": "Wicket Systri Warrick",
+    "height": "88",
+    "mass": "20",
+    "hair_color": "brown",
+    "skin_color": "brown",
+    "eye_color": "brown",
+    "birth_year": "8BBY",
+    "gender": "male",
+    "homeworld": "https://swapi.dev/api/planets/7/",
+    "films": [
+        "https://swapi.dev/api/films/3/"
+    ],
+    "species": [
+        "https://swapi.dev/api/species/9/"
+    ],
+    "vehicles": [
+        
+    ],
+    "starships": [
+        
+    ],
+    "created": "2014-12-18T11:21:58.954000Z",
+    "edited": "2014-12-20T21:17:50.369000Z",
+    "url": "https://swapi.dev/api/people/30/"
+}
+Request method:	GET
+Request URI:	https://swapi.dev/api/people/70
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Date: Tue, 06 Dec 2022 12:04:50 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+ETag: "bb5293870c0015e9e7bcd5a55fa9da63"
+Allow: GET, HEAD, OPTIONS
+Strict-Transport-Security: max-age=15768000
+
+{
+    "name": "Zam Wesell",
+    "height": "168",
+    "mass": "55",
+    "hair_color": "blonde",
+    "skin_color": "fair, green, yellow",
+    "eye_color": "yellow",
+    "birth_year": "unknown",
+    "gender": "female",
+    "homeworld": "https://swapi.dev/api/planets/54/",
+    "films": [
+        "https://swapi.dev/api/films/5/"
+    ],
+    "species": [
+        "https://swapi.dev/api/species/30/"
+    ],
+    "vehicles": [
+        "https://swapi.dev/api/vehicles/45/"
+    ],
+    "starships": [
+        
+    ],
+    "created": "2014-12-20T16:57:44.471000Z",
+    "edited": "2014-12-20T21:17:50.468000Z",
+    "url": "https://swapi.dev/api/people/70/"
+}
+Request method:	GET
+Request URI:	https://swapi.dev/api/people/60
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Date: Tue, 06 Dec 2022 12:04:51 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+ETag: "c7f67dd753417cd6a7b2cd5ea066e724"
+Allow: GET, HEAD, OPTIONS
+Strict-Transport-Security: max-age=15768000
+
+{
+    "name": "Gregar Typho",
+    "height": "185",
+    "mass": "85",
+    "hair_color": "black",
+    "skin_color": "dark",
+    "eye_color": "brown",
+    "birth_year": "unknown",
+    "gender": "male",
+    "homeworld": "https://swapi.dev/api/planets/8/",
+    "films": [
+        "https://swapi.dev/api/films/5/"
+    ],
+    "species": [
+        
+    ],
+    "vehicles": [
+        
+    ],
+    "starships": [
+        "https://swapi.dev/api/starships/39/"
+    ],
+    "created": "2014-12-20T11:10:10.381000Z",
+    "edited": "2014-12-20T21:17:50.445000Z",
+    "url": "https://swapi.dev/api/people/60/"
+}
+Request method:	GET
+Request URI:	https://swapi.dev/api/people/50
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+				Content-Type=application/json
+Cookies:		<none>
+Multiparts:		<none>
+Body:			<none>
+HTTP/1.1 200 OK
+Server: nginx/1.16.1
+Date: Tue, 06 Dec 2022 12:04:51 GMT
+Content-Type: application/json
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept, Cookie
+X-Frame-Options: SAMEORIGIN
+ETag: "3fc20e741b0c2e3b6fb6d8c40ff2a88f"
+Allow: GET, HEAD, OPTIONS
+Strict-Transport-Security: max-age=15768000
+
+{
+    "name": "Ben Quadinaros",
+    "height": "163",
+    "mass": "65",
+    "hair_color": "none",
+    "skin_color": "grey, green, yellow",
+    "eye_color": "orange",
+    "birth_year": "unknown",
+    "gender": "male",
+    "homeworld": "https://swapi.dev/api/planets/41/",
+    "films": [
+        "https://swapi.dev/api/films/4/"
+    ],
+    "species": [
+        "https://swapi.dev/api/species/19/"
+    ],
+    "vehicles": [
+        
+    ],
+    "starships": [
+        
+    ],
+    "created": "2014-12-20T10:08:33.777000Z",
+    "edited": "2014-12-20T21:17:50.417000Z",
+    "url": "https://swapi.dev/api/people/50/"
 }
